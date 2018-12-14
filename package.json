@@ -1,0 +1,11 @@
+{
+  "name": "twc",
+  "version": "1.0.0",
+  "description": "Windows cleaning tool",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run-script build --prefix client && cp -r client/build/ app/static"
+  },
+  "author": "HallowF",
+  "license": "ISC"
+}
