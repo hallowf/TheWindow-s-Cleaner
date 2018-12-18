@@ -1,31 +1,88 @@
 import React from 'react'
-import { Link, withRouter } from 'react-router-dom'
-import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap'
+import { withRouter } from 'react-router-dom'
+import styled from '@emotion/styled'
+import { Navbar, Nav, Glyphicon, Button } from 'react-bootstrap'
+import twcLogo from '../images/twcLogo.svg'
 
-const TopNavWrapper = {
-  borderRadius: '0px',
-  backgroundColor: 'white',
-  border: 'none',
-  height: '80px'
-}
-const NavHeader = { marginRight: '2em', width: '0em' }
-const NavBrand = { color: '#000000' }
 
-function NavBar() {
+const TopNav = styled(Navbar)`
+  background-color: #343148;
+  height: 60px;
+  margin: 0;
+  width: 100%;
+  margin-top: 1em;
+  padding-top: 0.5em;
+  bottom: 0px
+  border-radius: 0px;
+  border-style: none;
+`
+
+const NavLink = styled(Button)`
+  border-width: 0px;
+  background-color: inherit;
+  color: #FE840E;
+  width: 90px;
+  display: inline;
+  font-size: 1.5em;
+  margin-left: 1em;
+`
+
+const NavOptions = styled(Button)`
+  background-color: inherit;
+  border-width: 0px;
+  color: #FE840E;
+  display: inline;
+  float: right;
+  margin-top: 0.1em;
+  font-size: 1.5em;
+`
+
+const NavHeader = styled('div')`
+  display: inline-block;
+  width: 110px;
+  margin-left: 0.6em;
+  margin-top: 0.1em;
+`
+
+const LogoSVG = styled('img')`
+  display: inline;
+  width: 35px;
+  height: 35px;
+  margin-bottom: 0.4em;
+`
+
+const TWC = styled('strong')`
+  display: inline-block;
+  color: #FE840E;
+  font-size: 1.5em;
+  padding-top: 0.2em;
+`
+
+
+function NavBar({ history }) {
   return (
     <header>
-      <Navbar style={TopNavWrapper} collapseOnSelect>
-        <Nav style={{ float: 'right' }}>
-          <NavItem> Some Option</NavItem>
-        </Nav>
-        <Navbar.Header style={NavHeader}>
-          <Navbar.Brand>
+      <TopNav collapseOnSelect>
+        <NavHeader>
+          <LogoSVG src={twcLogo}/>
+          <TWC>
               TWC
-          </Navbar.Brand>
-        </Navbar.Header>
-      </Navbar>
+          </TWC>
+        </NavHeader>
+        <NavLink>
+          Main
+        </NavLink>
+        <NavLink>
+          Tools
+        </NavLink>
+        <NavOptions onClick={e => {
+          history.push('/options')
+        }}>
+          <Glyphicon glyph='cog'/>
+        </NavOptions>
+      </TopNav>
     </header>
   )
 }
 
-export default NavBar
+export default withRouter(NavBar)

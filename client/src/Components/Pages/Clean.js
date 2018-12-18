@@ -51,7 +51,7 @@ const CardButton = styled(Button)`
   overflow: hidden;
 `
 
-function Main({history}) {
+function Clean({history}) {
   return (
     <Grid>
       <Jumbo>
@@ -64,33 +64,27 @@ function Main({history}) {
               <p>
                 Wipe free disk space, Wipe file(s), Delete temporary files
               </p>
-              <CardButton onClick={e => {
-                history.push('/clean')
-                e.preventDefault()
-              }}>
+              <CardButton bsSize="medium">
                 <Glyphicon glyph="refresh"/>
               </CardButton>       
             </CardBody>
           </Card>
           <Card>
             <CardTitle>
-              <Title>Optimize</Title>
+              <Title>Clean</Title>
             </CardTitle>
             <CardBody>
               <p>
                 Manage startup items...
               </p>
-              <CardButton onClick={e => {
-                history.push('/optimize')
-                e.preventDefault()
-              }}>
+              <CardButton>
               <Glyphicon glyph="wrench"/>  
               </CardButton>       
             </CardBody>
           </Card>
           <Card>
               <CardTitle>
-                <Title>Something else</Title>
+                <Title>Something Clean</Title>
               </CardTitle>
               <CardBody>
                 <p>
@@ -110,4 +104,4 @@ function Main({history}) {
   )
 }
 
-export default withRouter(Main)
+export default withRouter(Clean)
