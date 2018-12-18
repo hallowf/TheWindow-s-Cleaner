@@ -1,4 +1,5 @@
 import os
+from gevent.pywsgi import WSGIServer
 from app import app
 
 FLASK_ENV = os.environ.get("FLASK_ENV", "production")
@@ -13,7 +14,7 @@ app.config.update(
 if FLASK_ENV == "development":
     app.config["TESTING"] = True
 else:
-    #sentry = Sentry(app, dsn='https://0fefacd0609d400981c0ddec3fbe806b:47f1ea6778ad45d28e928c3bfb945c67@sentry.io/1264488')
+    #sentry = Sentry(app, dsn='')
     print("Sentry is deactivated")
 
 ### Configure cross-origin requests on api backend
@@ -22,7 +23,11 @@ print("Cross origin requests disabled")
 
 
 # Run app
-
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", "2890"))
-    app.run( host="0.0.0.0",port=port)
+    if FLASK_ENV == "development":
+      app.run( host="127.0.0.1",port=port)
+    else:
+      http_server = WSGIServer(("127.0.0.1", port), app)
+      http_server.serve_forever()
+    
