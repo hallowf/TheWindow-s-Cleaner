@@ -4,6 +4,9 @@ venv
 env
 __pycache__
 
+## custom
+custom__*
+
 # JS dependencies
 client/node_modules
 /.pnp
