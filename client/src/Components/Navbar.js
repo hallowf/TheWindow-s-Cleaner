@@ -62,21 +62,28 @@ const TWC = styled('strong')`
 function NavBar({ history }) {
   return (
     <header>
-      <TopNav collapseOnSelect>
+      <TopNav>
         <NavHeader>
           <LogoSVG src={twcLogo}/>
           <TWC>
               TWC
           </TWC>
         </NavHeader>
-        <NavLink>
+        <NavLink onClick={ e => {
+          history.push('/')
+          e.preventDefault()
+        }}>
           Main
         </NavLink>
-        <NavLink>
+        <NavLink onClick={ e => {
+          history.push('/tools')
+          e.preventDefault()
+        }}>
           Tools
         </NavLink>
         <NavOptions onClick={e => {
           history.push('/options')
+          e.preventDefault()
         }}>
           <Glyphicon glyph='cog'/>
         </NavOptions>

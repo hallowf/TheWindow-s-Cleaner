@@ -2,106 +2,56 @@ import React from 'react'
 import styled from '@emotion/styled'
 import { withRouter } from 'react-router-dom'
 import { Jumbotron, Panel, Grid, Row, Glyphicon, Button } from 'react-bootstrap'
+import Select from 'react-select'
+
 
 const Jumbo = styled(Jumbotron)`
-  background-color: inherit !important;
-  margin-top: 3em;
-  margin-left: 3em;
-  margin-right: 3em;
-  width: 90% !important;
+  margin-top: 4em;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  border-radius: 0.5em;
+  padding-top 0.6em;
 `
-
-const Card = styled(Panel)`
-  background-color: #F0EAD6;
-  display: inline-block;
-  width: 30%;
-  border-radius: 4px;
-  margin: 1em;
-`
-
-const CardTitle = styled(Panel.Heading)`
-  border-bottom: 1px solid black !important;
-  background-color: inherit !important;
-  font-size: 20px;
-  font-weight: bold;
+const JumboHeader = styled('div')`
+  width: 100%;
+  border-bottom 1px solid black;
+  padding-bottom: 0.6em;
   text-align: center;
-  padding-bottom: 0.5em;
-  margin-bottom: 0.2em;
-  padding-top: 0.5em;
+  font-size: 1.6em
 `
 
-const CardBody = styled(Panel.Body)`
-  margin-bottom: 0.5em;
-  margin-left: 0.5em;
+const ToolSearch = styled('input')`
+  margin-left: 1em;
+  font-size: 0.7em;
 `
 
-const Title = styled('strong')`
-  color: black;
-  font-size: 1em;
-`
-
-const CardButton = styled(Button)`
-  display: block;
-  border-radius: 10px;
-  background-color: #343148;
-  color: #FE840E;
+const EachTool = styled(Panel)`
   width: 30%;
   margin: auto;
-  font-size: 1.3em;
-  overflow: hidden;
 `
 
-function Tools({history}) {
+const SmallSelect = styled(Select)`
+  margin-left: 1em;
+  display: inline-block;
+  width: 10%;
+`
+
+
+
+
+function Tools() {
   return (
-    <Grid>
-      <Jumbo>
-        <Row className="show-grid">
-          <Card>
-            <CardTitle>
-              <Title>Clean</Title>
-            </CardTitle>
-            <CardBody>
-              <p>
-                Wipe free disk space, Wipe file(s), Delete temporary files
-              </p>
-              <CardButton bsSize="medium">
-                <Glyphicon glyph="refresh"/>
-              </CardButton>       
-            </CardBody>
-          </Card>
-          <Card>
-            <CardTitle>
-              <Title>Optimize</Title>
-            </CardTitle>
-            <CardBody>
-              <p>
-                Manage startup items...
-              </p>
-              <CardButton>
-              <Glyphicon glyph="wrench"/>  
-              </CardButton>       
-            </CardBody>
-          </Card>
-          <Card>
-              <CardTitle>
-                <Title>Something else</Title>
-              </CardTitle>
-              <CardBody>
-                <p>
-                  Panel content
-                </p>
-                <CardButton>
-                  open  
-                </CardButton>       
-              </CardBody>
-            </Card>
-        </Row>
-        <Row className="show-grid">
-          
-        </Row>
-      </Jumbo>
-    </Grid>
+    <Jumbo>
+      <JumboHeader>
+        Tools
+        <ToolSearch/>
+      </JumboHeader>
+      <EachTool>
+        Cipher
+      </EachTool>
+    </Jumbo>
   )
 }
 
-export default withRouter(Tools)
+export default Tools

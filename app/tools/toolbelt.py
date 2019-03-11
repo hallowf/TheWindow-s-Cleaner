@@ -1,6 +1,7 @@
 import subprocess as sp
 import string
 from ctypes import windll
+from ..logs.logger import Log
 
 # Build list of all possible drives
 p_drives = [drive + ":" for drive in list(string.ascii_uppercase)]
@@ -26,21 +27,24 @@ def call_cypher(drive, path="\ciphtmp"):
   if drive in l_drives:
     try:
       # Call cypher and pipe stdout and stderr
-      cp = sp.Popen(["cipher", "/w:" + drive + path], stdout=sp.PIPE, stderr=sp.Pipe)
+      cp = sp.Popen(["cipher", "/w:" + drive + path], stdout=sp.PIPE, stderr=sp.PIPE)
       while True:
-        line = cp.stdout.readline()
-        if line not in ignored_lines:
-          print("Working")
-          print("[RawLine: {}]".format(line))
-        line = cp.stderr.readline()
-        if line not in ignored_lines:
-          print("error")
-          print("[RawLine: {}]".format(line))
-        if line in ignored_lines and cp.poll() != None:
-          break
+        with Log("cipher") as lg:
+          line = cp.stdout.readline()
+          print("stdout:", line)
+          if line not in ignored_lines:
+            print("Valid stdout")
+            print(line)
+            lg.write(line)
+          line = cp.stderr.readline()
+          print("stderr:", line)
+          if line not in ignored_lines:
+            print("Valid stderr")
+            print(line)
+            lg.write(line)
+          if line in ignored_lines and cp.poll() != None:
+            return
     except sp.CalledProcessError as e:
       return { "Error": e }
   else:
     return { "Error": "Uknown drive '{}'".format(drive)}
-
-

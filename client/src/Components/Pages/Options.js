@@ -8,7 +8,7 @@ const Jumbo = styled(Jumbotron)`
   margin-top: 4em !important;
   margin: auto;
   width: 45%;
-  padding-top: 0;
+  padding-top: 0.3em;
 `
 
 const JumboHeader = styled('div')`
@@ -17,7 +17,6 @@ const JumboHeader = styled('div')`
   font-size: 1.5em;
   font-style: bold;
   text-align: center;
-  padding-top: 0.2em;
   border-bottom: 1px solid black;
 `
 
